@@ -1,6 +1,7 @@
 # Python
 *.pyc
 *.bin
+.DS_Store
  
 # Logs
 logs
