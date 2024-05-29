@@ -1,6 +1,6 @@
 {
-  "name": "PWA Live Graph",
-  "short_name": "LiveGraph",
+  "name": "Heart rate",
+  "short_name": "Heare rate",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
