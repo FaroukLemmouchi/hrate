@@ -71,8 +71,8 @@ def entry_point(use_sample_data, record_len):
     
     if acc_data is not None or ibi_data is not None: 
         breathing_analyser = BreathingAnalyser(acc_data, ibi_data)
-        breathing_analyser.show_breathing_signal()
-        breathing_analyser.show_heart_rate_variability()
+        #breathing_analyser.show_breathing_signal()
+        #breathing_analyser.show_heart_rate_variability()
 
         if not use_sample_data:
             response = input("Do you want to save the data? (y/n): ")
@@ -80,3 +80,4 @@ def entry_point(use_sample_data, record_len):
                 save_sample_data(acc_data, ibi_data)
             else:
                 print("Data not saved")
+        return list(breathing_analyser.acc_times)

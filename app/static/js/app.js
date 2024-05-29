@@ -1,12 +1,39 @@
+async function connect(props) {
+    const device = await navigator.bluetooth.requestDevice({
+      filters: [{ services: ['heart_rate'] }],
+      acceptAllDevices: false,
+    })
+    console.log('Starting HR...\n')
+    const server = await device.gatt.connect()
+    const service = await server.getPrimaryService('heart_rate')
+    const char = await service.getCharacteristic('heart_rate_measurement')
+    char.oncharacteristicvaluechanged = props.onChange
+    char.startNotifications()
+    //alert("Connection established")
+    return char
+  }
+
+  document.getElementById('connectButton').addEventListener('click', function() {
+    connect({ onChange: printHeartRate })});
+
+    let time = 0;
+    function printHeartRate(event) {
+        const heartRate = event.target.value.getInt8(1)
+        console.clear()
+        console.log(heartRate)
+            addData(liveChart, time, heartRate);
+            time += 1;
+  }
+  
 const ctx = document.getElementById('liveChart').getContext('2d');
 const data = {
     labels: [],
     datasets: [{
-        label: 'Live Data',
+        //label: 'Live Data',
         data: [],
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
-        fill: false
+        //fill: true
     }]
 };
 
@@ -17,7 +44,12 @@ const config = {
         scales: {
             x: {
                 type: 'linear',
-                position: 'bottom'
+                position: 'bottom',
+            },
+        },
+        plugins: {
+            legend: {
+                display: false,
             }
         }
     }
@@ -32,42 +64,3 @@ function addData(chart, label, data) {
     });
     chart.update();
 }
-
-function getRandomData() {
-    return Math.floor(Math.random() * 100);
-}
-
-let time = 0;
-setInterval(() => {
-    addData(liveChart, time, getRandomData());
-    time += 1;
-}, 1000);
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/service-worker.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, err => {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-    });
-}
-
- // Add event listener to the button
- document.getElementById('refreshButton').addEventListener('click', function() {
-    // Send a GET request to the Flask route
-    fetch('/run_script', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data); // Log the result from the Python script
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
