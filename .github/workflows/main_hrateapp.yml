@@ -78,5 +78,5 @@ jobs:
       - name: 'start gunicorn'
         run: |
           cd $GITHUB_WORKSPACE
-          pip install -r requirement.txt gunicorn
-          gunicorn -b 0.0.0.0:8000 run:app
+          pip install -r requirements.txt gunicorn
+          gunicorn -D -b 0.0.0.0:8000 run:app
