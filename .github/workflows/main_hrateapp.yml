@@ -77,8 +77,7 @@ jobs:
       - name: 'start gunicorn'
         run: |
           cd $GITHUB_WORKSPACE
-          pip install gunicorn Flask
-          ls -l -h 
-          pwd
+          pip install gunicorn
+          find .
           source venv/bin/activate
-          gunicorn -b 0.0.0.0:8000 run:app
+          gunicorn -D -b 0.0.0.0:8000 run:app
