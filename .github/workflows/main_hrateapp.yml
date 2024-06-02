@@ -75,4 +75,6 @@ jobs:
         with:
           app-name: 'hrateapp'
           slot-name: 'Production'
+      - name: start app
+        run: gunicorn -b 0.0.0.0:8000 run:app
           
