@@ -41,6 +41,7 @@ jobs:
           name: python-app
           path: |
             release.zip
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -77,7 +78,5 @@ jobs:
       - name: 'start gunicorn'
         run: |
           cd $GITHUB_WORKSPACE
-          pip install gunicorn
-          find .
-          source venv/bin/activate
+          pip install -r requirement.txt gunicorn
           gunicorn -D -b 0.0.0.0:8000 run:app
