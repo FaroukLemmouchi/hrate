@@ -79,4 +79,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           pip install gunicorn
+          ls -l -h 
+          pwd
+          source venv/bin/activate
           gunicorn -b 0.0.0.0:8000 run:app
