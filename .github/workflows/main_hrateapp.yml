@@ -79,4 +79,4 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           pip install -r requirement.txt gunicorn
-          gunicorn -D -b 0.0.0.0:8000 run:app
+          gunicorn -b 0.0.0.0:8000 run:app
