@@ -12,5 +12,4 @@ COPY . .
 
 # Command to run the Flask app
 CMD ["gunicorn", "run:app", "-b",  "0.0.0.0:8000"]
-#CMD ["gunicorn", "--certfile", "/app/cert.pem", "--keyfile", "/app/key.pem", "-b", "0.0.0.0:5000", "run:app"]
 
