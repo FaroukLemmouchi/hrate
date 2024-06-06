@@ -7,20 +7,13 @@
     <link rel="manifest" href="/static/manifest.json">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">  </head>
-    <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-      .then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-      });
-    }
-    </script>
 
 </head>
 <body>
+    <button id="night-mode-toggle">Toggle Night Mode</button>
+
     <h1 >Heart rate</h1>
+
     <button id="connectButton">Connect</button>
 
     <canvas id="liveChart" width="200" height="100"></canvas>

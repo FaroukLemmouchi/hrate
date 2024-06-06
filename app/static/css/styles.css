@@ -1,7 +1,24 @@
+  
+/* styles.css */
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.night-mode {
+  --background-color: black;
+  --text-color: white;
+}
 h1 {
   text-align: center;
 }
 button {
   align-self: center;
 }
-  
+

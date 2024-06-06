@@ -64,3 +64,22 @@ function addData(chart, label, data) {
     });
     chart.update();
 }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    }
+
+
+    // script.js
+document.addEventListener('DOMContentLoaded', (event) => {
+    const toggleButton = document.getElementById('night-mode-toggle');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('night-mode');
+    });
+});
