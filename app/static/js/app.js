@@ -15,13 +15,13 @@
 //   document.getElementById('connectButton').addEventListener('click', function() {
 //     connect({ onChange: printHeartRate })});
 
-    const time = Date.now();
+const time = new Date(Date.now())
 //     function printHeartRate(event) {
 //         const heartRate = event.target.value.getInt8(1)
 //             addData(liveChart, time, heartRate);
 //             time += 1;
 //   }
-  
+
 const ctx = document.getElementById('liveChart').getContext('2d');
 const data = {
     labels: [],
@@ -31,26 +31,11 @@ const data = {
 };
 
 const config = {
-  type: 'line',
-  data: data,
-  options: {
-      scales: {
-          x: {
-              type: 'linear',  // Use linear type for x-axis
-              positiontop: 'bottom',
-              ticks: {
-                  autoSkip: true,
-                  maxTicksLimit: 10
-              }
-          },
-          y: {
-              min: 0,
-              max: 100
-          }
-      }
-  }
+    type: 'line',
+    data: data,
+    options: {
+    }
 };
-
 
 const chart = new Chart(ctx, config);
 
@@ -59,22 +44,23 @@ setInterval(updateChart, 1000);
 
 function addData(chart, data) {
     document.getElementById("hr-value").innerText = data;
-    const time = Date.now()
+    const time = new Date(Date.now())
 
-    chart.data.labels.push(time);
+    chart.data.labels.push(time.toISOString().substring(11, 19));
+    console.log(chart.data.labels)
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
     });
-    chart.options.scales.x.min = time - 10000;
+    //chart.options.scales.x.min = time.setMinutes(time.getMinutes() - 5);;
     chart.options.scales.x.max = time;
     console.log(time)
 }
 
 // Function to update the chart with new data and adjust the x-axis range
 function updateChart() {
-  const data = Math.floor(Math.random() * 100) // Random data for example
-  addData(chart, data);
-  chart.update();
+    const data = Math.floor(Math.random() * 100) // Random data for example
+    addData(chart, data);
+    chart.update();
 }
 
 //     if ('serviceWorker' in navigator) {
