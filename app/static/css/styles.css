@@ -18,7 +18,14 @@ body.night-mode {
 h1 {
   text-align: center;
 }
-button {
-  align-self: center;
+
+#hr-value {
+  font-size: 3em;
+  color: #333;
 }
 
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+}

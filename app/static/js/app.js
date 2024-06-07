@@ -3,13 +3,12 @@ async function connect(props) {
       filters: [{ services: ['heart_rate'] }],
       acceptAllDevices: false,
     })
-    console.log('Starting HR...\n')
     const server = await device.gatt.connect()
     const service = await server.getPrimaryService('heart_rate')
     const char = await service.getCharacteristic('heart_rate_measurement')
     char.oncharacteristicvaluechanged = props.onChange
     char.startNotifications()
-    //alert("Connection established")
+    alert('Starting heart rate measurement in few seconds...\nREFRESH the page to STOP.')
     return char
   }
 
@@ -20,7 +19,6 @@ async function connect(props) {
     function printHeartRate(event) {
         const heartRate = event.target.value.getInt8(1)
         console.clear()
-        console.log(heartRate)
             addData(liveChart, time, heartRate);
             time += 1;
   }
@@ -58,6 +56,7 @@ const config = {
 const liveChart = new Chart(ctx, config);
 
 function addData(chart, label, data) {
+    document.getElementById("hr-value").innerText = data;
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
