@@ -1,27 +1,8 @@
-// async function connect(props) {
-//     const device = await navigator.bluetooth.requestDevice({
-//       filters: [{ services: ['heart_rate'] }],
-//       acceptAllDevices: false,
-//     })
-//     const server = await device.gatt.connect()
-//     const service = await server.getPrimaryService('heart_rate')
-//     const char = await service.getCharacteristic('heart_rate_measurement')
-//     char.oncharacteristicvaluechanged = props.onChange
-//     char.startNotifications()
-//     // alert('Starting heart rate measurement in few seconds...\nREFRESH the page to STOP.')
-//     return char
-//   }
-
-//   document.getElementById('connectButton').addEventListener('click', function() {
-//     connect({ onChange: printHeartRate })});
-
-let time = 0
-//     function printHeartRate(event) {
-//         const heartRate = event.target.value.getInt8(1)
-//             addData(liveChart, time, heartRate);
-//             time += 1;
-//   }
-
+//
+// Initialization
+//
+xSlidingWin = 300;
+let time = 0;
 const ctx = document.getElementById('liveChart').getContext('2d');
 const data = {
     labels: [],
@@ -119,31 +100,79 @@ const config = {
 
 const chart = new Chart(ctx, config);
 
-// Update the chart every second (1000 milliseconds)
-setInterval(updateChart, 500);
 
+//
+// Logic
+//
 function addData(chart, datalist) {
     const data = datalist[0]
     const data2 = datalist[1]
-    time += 1
 
     chart.data.labels.push(time);
     chart.data.datasets[1].data.push(data2)
     chart.data.datasets[0].data.push(data)
 
-    chart.options.scales.x.min = Math.max(0, time - 50);
+    chart.options.scales.x.min = Math.max(0, time - xSlidingWin);
 
     document.getElementById("hr-value").innerText = data;
+    time += 1
 
 }
 
-// Function to update the chart with new data and adjust the x-axis range
-function updateChart() {
-    const data = Math.floor(Math.random() * 100 + 100); // Random data for example
-    const data2 = data * 0.2 + 80; // Random data for example
-    addData(chart, [data, data2]);
+
+function printHeartRate(event) {
+    const heartRate = event.target.value.getInt8(1)
+    addData(chart, [heartRate, heartRate + 10]);
     chart.update();
 }
+
+async function connect(props) {
+    const device = await navigator.bluetooth.requestDevice({
+        filters: [{ services: ['heart_rate'] }],
+        acceptAllDevices: false,
+    })
+    const server = await device.gatt.connect()
+    const service = await server.getPrimaryService('heart_rate')
+    const char = await service.getCharacteristic('heart_rate_measurement')
+    char.oncharacteristicvaluechanged = props.onChange
+    char.startNotifications()
+    // alert('Starting heart rate measurement in few seconds...\nREFRESH the page to STOP.')
+    return char
+}
+
+
+document.getElementById('connectButton').addEventListener('click', function () {
+    connect({ onChange: printHeartRate })
+});
+
+// // Function to update the chart with new data and adjust the x-axis range
+// function updateChart() {
+//     const data = Math.floor(Math.random() * 100 + 100); // Random data for example
+//     const data2 = data * 0.2 + 80; // Random data for example
+//     addData(chart, [data, data2]);
+//     chart.update();
+// }
+
+
+
+
+// Update the chart every second (1000 milliseconds)
+// setInterval(updateChart, 500);
+
+
+
+
+//
+// Miscellaneous
+//
+document.addEventListener('DOMContentLoaded', (event) => {
+    const checkBox = document.getElementById('night-mode-toggle');
+    const body = document.body;
+
+    checkBox.addEventListener('change', () => {
+        body.classList.toggle('night-mode');
+    });
+});
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
@@ -153,17 +182,3 @@ if ('serviceWorker' in navigator) {
             console.log('ServiceWorker registration failed: ', err);
         });
 }
-
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    const checkBox = document.getElementById('night-mode-toggle');
-    const body = document.body;
-
-    checkBox.addEventListener('change', () => {
-        if (this.checked) {
-            body.classList.toggle('night-mode');
-        } else {
-            body.classList.toggle('night-mode');
-        }
-    });
-});
