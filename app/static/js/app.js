@@ -125,7 +125,6 @@ setInterval(updateChart, 500);
 function addData(chart, datalist) {
     const data = datalist[0]
     const data2 = datalist[1]
-    document.getElementById("hr-value").innerText = data;
     time += 1
 
     chart.data.labels.push(time);
@@ -133,24 +132,27 @@ function addData(chart, datalist) {
     chart.data.datasets[0].data.push(data)
 
     chart.options.scales.x.min = Math.max(0, time - 50);
+
+    document.getElementById("hr-value").innerText = data;
+
 }
 
 // Function to update the chart with new data and adjust the x-axis range
 function updateChart() {
-    const data = Math.floor(Math.random() * 100 + 100) // Random data for example
-    const data2 = Math.floor(Math.random() * 120 + 80) // Random data for example
+    const data = Math.floor(Math.random() * 100 + 100); // Random data for example
+    const data2 = data * 0.2 + 80; // Random data for example
     addData(chart, [data, data2]);
     chart.update();
 }
 
-//     if ('serviceWorker' in navigator) {
-//       navigator.serviceWorker.register('/service-worker.js')
-//       .then(function(registration) {
-//         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-//       }, function(err) {
-//         console.log('ServiceWorker registration failed: ', err);
-//       });
-//     }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+        .then(function (registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
