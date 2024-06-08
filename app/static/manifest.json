@@ -1,6 +1,6 @@
 {
   "name": "Heart rate",
-  "short_name": "Heare rate",
+  "short_name": "Hrate",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

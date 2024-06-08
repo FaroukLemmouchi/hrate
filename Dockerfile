@@ -1,14 +1,14 @@
 # Use a slim Python base image
-FROM python:3.9-slim
+FROM python:alpine3.20
 
 # Set working directory
 WORKDIR /app
 
-# Install dependencies
-RUN pip install --no-cache-dir Flask gunicorn
-
 # Copy your application code
 COPY . .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 # Command to run the Flask app
 CMD ["gunicorn", "run:app", "-b",  "0.0.0.0:8000"]
