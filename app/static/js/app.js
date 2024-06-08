@@ -52,43 +52,71 @@ const config = {
     type: 'line',
     data: data,
     options: {
-        x: {
-            title: {
-                display: true,
-                text: 'Time'
+        responsive: true,
+
+        plugins: {
+            legend: {
+                position: 'top',
             },
         },
-        'y-axis-1': {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            options: {
-
-                min: 30,
-                max: 200,
-            },
-            title: {
+        scales: {
+            x: {
                 display: true,
-                text: 'Value for Dataset 1'
-            }
-        },
-        'y-axis-2': {
-            type: 'linear',
-            display: true,
-            position: 'right',
-            options: {
+                title: {
+                    display: true,
+                    text: 'Seconds'
+                },
+                // grid: {
+                //     color: 'grey'  // Change the grid color for x-axis
+                // },
 
-                min: 30,
-                max: 200,
             },
 
-            title: {
+            'y-axis-1': {
+                type: 'linear',
                 display: true,
-                text: 'Value for Dataset 2'
+                position: 'left',
+                options: {
+
+                    min: 30,
+                    max: 200,
+                },
+                // title: {
+                //     display: true,
+                //     text: 'Value for Dataset 1'
+                // },
+                ticks: {
+                    color: 'rgba(255, 0, 0, 1)'  // Change the y-axis label color
+
+                },
+                grid: {
+                    color: 'grey',  // Change the grid color for x-axis
+                }
+
             },
-            grid: {
-                drawOnChartArea: false  // only want the grid lines for one axis to show up
-            }
+            'y-axis-2': {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                options: {
+
+                    min: 30,
+                    max: 200,
+                },
+
+                // title: {
+                //     display: true,
+                //     text: 'Value for Dataset 2'
+                // },
+                ticks: {
+                    color: 'rgb(75, 192, 0)'  // Change the y-axis label color
+
+                },
+
+                grid: {
+                    drawOnChartArea: false  // only want the grid lines for one axis to show up
+                }
+            },
         }
     }
 };
@@ -129,11 +157,15 @@ function updateChart() {
 //     }
 
 
-// document.addEventListener('DOMContentLoaded', (event) => {
-//     const toggleButton = document.getElementById('night-mode-toggle');
-//     const body = document.body;
+document.addEventListener('DOMContentLoaded', (event) => {
+    const checkBox = document.getElementById('night-mode-toggle');
+    const body = document.body;
 
-//     toggleButton.addEventListener('click', () => {
-//         body.classList.toggle('night-mode');
-//     });
-// });
+    checkBox.addEventListener('change', () => {
+        if (this.checked) {
+            body.classList.toggle('night-mode');
+        } else {
+            body.classList.toggle('night-mode');
+        }
+    });
+});

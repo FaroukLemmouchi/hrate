@@ -13,14 +13,17 @@
 </head>
 
 <body>
-    <button id="night-mode-toggle">Toggle Night Mode</button>
+    <div>
+        <input type="checkbox" id="night-mode-toggle" name="dark" />
+        <label for="dark">🌙 Dark</label>
+    </div>
+    <button id="connectButton">Connect</button>
+
     <div id="hr-value">0</div>
 
     <h1>Heart rate</h1>
 
-    <button id="connectButton">Connect</button>
-
-    <canvas id="liveChart" height="100"></canvas>
+    <canvas id="liveChart"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
