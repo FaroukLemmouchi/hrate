@@ -7,7 +7,8 @@
   body {
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.8s, color 0.8s;
+
   }
 
   body.night-mode {
@@ -21,16 +22,24 @@
 
   #hr-value {
     font-size: 3em;
-    color: #333;
+    color: 'grey';
+    text-align: 'center';
+    color: 'grey';
   }
 
   #liveChart {
-    height: 60%;
+    height: 40%;
     margin: 3;
+    max-height: 400px;
+
   }
 
   button {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 1em;
+  }
+
+  #heartEmoji {
+    text-size-adjust: 40;
   }
