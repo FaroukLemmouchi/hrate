@@ -11,5 +11,5 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt gunicorn
 
 # Command to run the Flask app
-CMD ["gunicorn", "run:app", "-b",  "0.0.0.0:8000"]
+ENTRYPOINT ["gunicorn", "run:app", "-b", "0.0.0.0:8080"]
 
