@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hearte rate</title>
     <link rel="manifest" href="/static/manifest.json">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">  </head>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+</head>
 
 </head>
+
 <body>
     <button id="night-mode-toggle">Toggle Night Mode</button>
     <div id="hr-value">0</div>
 
-    <h1 >Heart rate</h1>
+    <h1>Heart rate</h1>
 
     <button id="connectButton">Connect</button>
 
-    <canvas id="liveChart" width="200" height="100"></canvas>
+    <canvas id="liveChart" height="100"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
+
 </html>
-
-
