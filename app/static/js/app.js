@@ -132,7 +132,7 @@ function addData(chart, datalist) {
     chart.data.datasets[1].data.push(data2)
     chart.data.datasets[0].data.push(data)
 
-    chart.options.scales.x.min = Math.max(0, time - 100000);
+    chart.options.scales.x.min = Math.max(0, time - 50);
 }
 
 // Function to update the chart with new data and adjust the x-axis range
