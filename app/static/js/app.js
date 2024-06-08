@@ -76,11 +76,9 @@ const config = {
                 type: 'linear',
                 display: true,
                 position: 'left',
-                options: {
 
-                    min: 30,
-                    max: 200,
-                },
+                min: 30,
+                max: 200,
                 // title: {
                 //     display: true,
                 //     text: 'Value for Dataset 1'
@@ -98,11 +96,9 @@ const config = {
                 type: 'linear',
                 display: true,
                 position: 'right',
-                options: {
 
-                    min: 30,
-                    max: 200,
-                },
+                min: 30,
+                max: 200,
 
                 // title: {
                 //     display: true,
@@ -142,7 +138,7 @@ function addData(chart, datalist) {
 // Function to update the chart with new data and adjust the x-axis range
 function updateChart() {
     const data = Math.floor(Math.random() * 100 + 100) // Random data for example
-    const data2 = data * 0.8 + 20 // Random data for example
+    const data2 = Math.floor(Math.random() * 120 + 80) // Random data for example
     addData(chart, [data, data2]);
     chart.update();
 }
