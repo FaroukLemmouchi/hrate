@@ -116,7 +116,6 @@ function addData(chart, datalist) {
 
     document.getElementById("hr-value").innerText = data;
     time += 1
-
 }
 
 
@@ -137,8 +136,21 @@ async function connect(props) {
     char.oncharacteristicvaluechanged = props.onChange
     char.startNotifications()
     // alert('Starting heart rate measurement in few seconds...\nREFRESH the page to STOP.')
-    return char
-}
+    //return char
+    if (device.gatt.connected) {
+        $.ajax({
+            url: 'receive_data',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 'value': device.name }),
+            success: function (response) {
+                console.log("sussess");
+            },
+        });
+    } else {
+        console.log("not connected")
+    }
+};
 
 
 document.getElementById('connectButton').addEventListener('click', function () {
@@ -152,11 +164,6 @@ document.getElementById('connectButton').addEventListener('click', function () {
 //     addData(chart, [data, data2]);
 //     chart.update();
 // }
-
-
-
-
-// Update the chart every second (1000 milliseconds)
 // setInterval(updateChart, 500);
 
 
@@ -175,7 +182,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/static/js/service-worker.js')
         .then(function (registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function (err) {
