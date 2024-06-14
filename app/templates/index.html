@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hearte rate</title>
-    <link rel="manifest" href="/static/manifest.json">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     <link rel="icon" type="image/ico" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 
 
 </head>
@@ -15,6 +15,8 @@
 </head>
 
 <body>
+    <h1>Heart rate</h1>
+
     <div>
         <input type="checkbox" id="night-mode-toggle" name="dark" />
         <label for="dark">🌙 Dark</label>
@@ -22,13 +24,12 @@
     <button id="connectButton">Connect</button>
 
     <div id="hr-value">0</div>
+    <div id="<3">❤️</div>
 
-    <h1>Heart rate</h1>
 
     <canvas id="liveChart"></canvas>
 
     <script src="{{ url_for('static', filename='js/service-worker.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
