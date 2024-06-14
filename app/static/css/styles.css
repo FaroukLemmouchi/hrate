@@ -8,7 +8,7 @@
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.8s, color 0.8s;
-
+    margin: 2%
   }
 
   body.night-mode {
@@ -31,7 +31,12 @@
     height: 40%;
     margin: 3;
     max-height: 400px;
+  }
 
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   button {

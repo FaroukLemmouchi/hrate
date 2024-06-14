@@ -37,7 +37,8 @@ const config = {
 
         plugins: {
             legend: {
-                position: 'top',
+                display: false,
+                // position: 'top',
             },
         },
         scales: {
@@ -68,9 +69,9 @@ const config = {
                     color: 'rgba(255, 0, 0, 1)'  // Change the y-axis label color
 
                 },
-                grid: {
-                    color: 'grey',  // Change the grid color for x-axis
-                }
+                // grid: {
+                //     color: 'grey',  // Change the grid color for x-axis
+                // }
 
             },
             // 'y-axis-2': {
