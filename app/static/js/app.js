@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
-const nightModeStatus = JSON.parse(localStorage.getItem('nightModeStatus'));
 
 // Apply the night mode status on page load
 if (nightModeStatus === true) {
