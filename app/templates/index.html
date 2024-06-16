@@ -1,46 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <title>Hearte rate</title>
+{% block content %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<div class="d-flex justify-content-center">
+    <button id='connectButton' class="btn btn-primary">Connect</button>
+</div>
 
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <link rel="icon" type="image/ico" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+<div id="hr-value"> </div>
+<div id="<3">❤️</div>
+
+<canvas id="liveChart"></canvas>
 
 
-</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/hr.js') }}"></script>
 
-</head>
-
-<body>
-    <h1>Heart rate</h1>
-
-    <div class="form-check form-switch" , style="display: flex;">
-        <input class="form-check-input" , id="night-mode-toggle" , type="checkbox" role="switch"
-            id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="dark">🌙</label>
-    </div>
-
-
-    <div id="hr-value"> </div>
-    <div id="<3">❤️</div>
-
-
-    <canvas id="liveChart"></canvas>
-
-    <div class="center">
-        <button id="connectButton">Connect</button>
-    </div>
-
-    <script src="{{ url_for('static', filename='js/service-worker.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-</body>
-
-</html>
+{% endblock %}
