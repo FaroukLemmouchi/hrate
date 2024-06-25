@@ -1,5 +1,5 @@
 //
-// Miscellaneous
+// Dark mode
 //
 const nightModeToggle = document.getElementById('night-mode-toggle');
 
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
-
 // Apply the night mode status on page load
 if (nightModeStatus === true) {
     document.body.classList.add('night-mode');
@@ -29,6 +28,9 @@ if (nightModeStatus === true) {
 }
 
 
+//
+// Service worker
+//
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/static/js/service-worker.js')
         .then(function (registration) {
@@ -37,3 +39,16 @@ if ('serviceWorker' in navigator) {
             console.log('ServiceWorker registration failed: ', err);
         });
 }
+
+//
+// Stripe
+//
+var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+var elements = stripe.elements({
+    clientSecret: 'CLIENT_SECRET',
+});
+var elements = stripe.elements({
+    mode: 'payment',
+    currency: 'usd',
+    amount: 1099,
+});

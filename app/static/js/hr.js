@@ -60,7 +60,7 @@ const config = {
                 position: 'left',
 
                 min: 30,
-                max: 200,
+                max: 180,
                 // title: {
                 //     display: true,
                 //     text: 'Value for Dataset 1'
