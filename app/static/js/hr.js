@@ -1,7 +1,7 @@
 //
 // Initialization
 //
-xSlidingWin = 300;
+xSlidingWin = 600;
 let time = 0;
 const ctx = document.getElementById('liveChart').getContext('2d');
 const data = {

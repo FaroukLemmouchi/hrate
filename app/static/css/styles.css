@@ -8,7 +8,6 @@
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.0s, color 0.0s;
-    margin: 2%
   }
 
   body.night-mode {
@@ -16,56 +15,16 @@
     --text-color: white;
   }
 
-
-  /* h1 {
-    text-align: center;
-  } */
-
   #liveChart {
     height: 40%;
     margin: 3;
     max-height: 400px;
   }
 
-  /* .center {
+  .center {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-
-  .cookie-consent-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #333;
-    color: #fff;
-    padding: 15px;
-    text-align: center;
-    z-index: 1000;
-    display: none;
-    font-family: Arial, sans-serif;
-  }
-
-  .cookie-consent-banner button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .cookie-consent-banner button:hover {
-    background-color: #45a049;
-  }
-
-  .cookie-consent-banner a {
-    color: #4CAF50;
-    text-decoration: underline;
-    margin-left: 10px;
   }
 
   /* Additional custom styles if needed */

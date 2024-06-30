@@ -39,16 +39,3 @@ if ('serviceWorker' in navigator) {
             console.log('ServiceWorker registration failed: ', err);
         });
 }
-
-//
-// Stripe
-//
-var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
-var elements = stripe.elements({
-    clientSecret: 'CLIENT_SECRET',
-});
-var elements = stripe.elements({
-    mode: 'payment',
-    currency: 'usd',
-    amount: 1099,
-});
